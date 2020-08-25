@@ -1,2 +1,18 @@
-{%  assign variable ="Hello" %}
-{{ variable  }}
+{% comment %}tags{% endcomment %}
+{% assign variable = 5 %}
+{{ variable }}
+
+{% comment %}arrays  - you create a string with all the values you want and separate by delimiter{% endcomment %}
+{% assign array_string = "Mike,Chris,Bob,Denise,Clinton,Michael" %}
+{% assign array = array_string | split: "," %}
+<ul>
+    {% for name in array %}
+        {% if name.size < 4 %}
+            <li>{{ name }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+
+
+
