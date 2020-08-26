@@ -3,7 +3,7 @@
 <ul>
     {% for product in collection.products %}
         <li>
-            <a href="{{ product.url }}">{{ product.title }}</a> - {{ product.price | money }}
+            <a style="color: {{ settings.link_color }}" href="{{ product.url }}">{{ product.title }}</a> - {{ product.price | money }}
             {% unless product.available == true %}
                 (SOLD OUT)
             {% endunless %}
