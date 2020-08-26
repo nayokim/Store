@@ -1,9 +1,12 @@
 {% assign collection = collections['all'] %}
 {{ collection.title }}
 <ul>
-{% for  product in collection.products%}
-    <li>
-        <a href="{{ product.url }}"></a>{{ product.title }}- {{ product.price | money }}</li>
-
-{% endfor %}
+    {% for product in collection.products %}
+        <li>
+            <a href="{{ product.url }}">{{ product.title }}</a> - {{ product.price | money }}
+            {% if product.available != true %}
+            SOLD OUT
+            {% endif %}
+        </li>
+    {% endfor %}
 </ul>
