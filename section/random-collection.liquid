@@ -2,12 +2,29 @@
 {{ collection.title }}
 <ul>
     {% for product in collection.products %}
+        {% unless section.settings.show_soldout != false
+        and product.available !=true %}
         <li>
             <a style="color: {{ settings.link_color }}" href="{{ product.url }}">{{ product.title }}</a>
             - {{ product.price | money }}
-            {% unless product.available == true %}
+            {% if product.available != true %}
                 (SOLD OUT)
-            {% endunless %}
+            {% endif %}
         </li>
+        {% endunless %}
     {% endfor %}
 </ul>
+
+{% schema %}
+    {
+        "name":"Section name",
+        "settings" : [
+            {
+            "type" : "checkbox",
+            "id" : "show_soldout",
+            "label": "hide sold out products",
+            "default": false
+            }
+        ]
+    }
+{% endschema %}
